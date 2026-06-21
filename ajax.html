@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX -1 Text file
+
+    </title>
+</head>
+<body>
+    <button id="button"> Get Text File</button>
+    <br></br>
+    <h2 id = text></h2>
+
+
+    <script>
+        // create event lister 
+        document.getElementById('button').addEventListener('click', loadText);
+        function loadText(){
+                // create XHR object
+            var xhr = new XMLHttpRequest();
+
+            // Open - type, url/file, async 
+            xhr.open('GET','sample.txt', true);
+
+            // Optional for loaders 
+            xhr.onprogress = function(){
+                console.log("Readstate " ,xhr.readyState)
+            }
+
+            xhr.onload = function(){
+                console.log("Readstate " ,xhr.readyState )
+                if(this.status ==200){
+                    console.log(this.responseText)
+                    document.getElementById('text').innerHTML = this.responseText;
+ 
+                } //elseif(this.status){
+                //     document.getElementById('text').innerHTML = 'Not Found';
+ 
+
+                // }
+              
+            }
+            xhr.onerror = function(){
+                console.log("Request Error...")
+            }
+
+            // using the old fashion onreadystatechange 
+
+            // xhr.onreadystatechange = function(){
+            //     if(this.readyState ==4 && this.status ==200){
+            //         console.log(this.responseText);
+            //     }
+            // }
+              // sends request
+                xhr.send(); 
+
+        }
+        // HTTP Statuses;
+        // 200 : "OK"
+        // 403 : Forbidden
+        // 404 : Not Found
+
+        // php helps to run or execute sql code in interacting with databases in servers 
+        // so its basically a tool that helps in backend logic development by allowing us write sql code in the 
+        // servers side of developmen journey
+       
+
+    </script>
+</body>
+</html>
